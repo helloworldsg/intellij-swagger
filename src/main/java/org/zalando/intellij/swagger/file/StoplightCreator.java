@@ -18,21 +18,20 @@ import java.util.Objects;
 import java.util.stream.Stream;
 import org.jetbrains.annotations.NotNull;
 
-public class SwaggerUiCreator {
+public class StoplightCreator {
 
-  private static final String SWAGGER_UI_FOLDER_NAME = "swagger-ui";
+  private static final String SWAGGER_UI_FOLDER_NAME = "stoplight";
 
   private final FileContentManipulator fileContentManipulator;
 
-  public SwaggerUiCreator(final FileContentManipulator fileContentManipulator) {
+  public StoplightCreator(final FileContentManipulator fileContentManipulator) {
     this.fileContentManipulator = fileContentManipulator;
   }
 
   public Path createSwaggerUiFiles(final String specificationContent) throws Exception {
     final File tempSwaggerUiDir = copySwaggerUiToTempDir();
 
-    setSwaggerConfigurationValues(
-        new File(tempSwaggerUiDir, "swagger-initializer.js"), specificationContent);
+    setSwaggerConfigurationValues(new File(tempSwaggerUiDir, "index.html"), specificationContent);
 
     return Paths.get(tempSwaggerUiDir.getAbsolutePath());
   }

@@ -20,14 +20,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.jetbrains.annotations.NotNull;
 import org.zalando.intellij.swagger.file.FileContentManipulator;
-import org.zalando.intellij.swagger.file.SwaggerUiCreator;
+import org.zalando.intellij.swagger.file.StoplightCreator;
 
 public class SwaggerFileService {
 
   private final ConcurrentHashMap<String, Path> convertedSwaggerDocuments =
       new ConcurrentHashMap<>();
-  private final SwaggerUiCreator swaggerUiCreator =
-      new SwaggerUiCreator(new FileContentManipulator());
+  private final StoplightCreator stoplightCreator =
+      new StoplightCreator(new FileContentManipulator());
   private final ExecutorService executorService = Executors.newSingleThreadExecutor();
   private final JsonBuilderService jsonBuilderService = new JsonBuilderService();
   private final ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
@@ -75,7 +75,7 @@ public class SwaggerFileService {
 
   private Optional<Path> convertSwaggerToHtmlWithoutCache(
       final VirtualFile virtualFile, final String contentAsJson) throws Exception {
-    final Path path = swaggerUiCreator.createSwaggerUiFiles(contentAsJson);
+    final Path path = stoplightCreator.createSwaggerUiFiles(contentAsJson);
 
     convertedSwaggerDocuments.put(virtualFile.getPath(), path);
 
@@ -88,7 +88,7 @@ public class SwaggerFileService {
             dir -> {
               LocalFileUrl indexPath =
                   new LocalFileUrl(Paths.get(dir.toString(), "index.html").toString());
-              swaggerUiCreator.updateSwaggerUiFile(indexPath, contentAsJson);
+              stoplightCreator.updateSwaggerUiFile(indexPath, contentAsJson);
             });
   }
 
