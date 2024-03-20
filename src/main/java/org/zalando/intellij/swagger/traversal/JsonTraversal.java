@@ -187,7 +187,7 @@ public class JsonTraversal extends Traversal {
   public void addReferenceDefinition(final String path, final PsiElement anchorPsiElement) {
     if (path.isEmpty() || anchorPsiElement == null) return;
 
-    final String current = org.apache.commons.lang.StringUtils.substringBefore(path, "/");
+    final String current = org.apache.commons.lang3.StringUtils.substringBefore(path, "/");
 
     final Optional<PsiElement> found =
         new PathFinder().findByPathFrom("$." + current, anchorPsiElement);
@@ -206,7 +206,7 @@ public class JsonTraversal extends Traversal {
                   .orElse(null);
             });
 
-    final String remaining = org.apache.commons.lang.StringUtils.substringAfter(path, "/");
+    final String remaining = org.apache.commons.lang3.StringUtils.substringAfter(path, "/");
 
     addReferenceDefinition(remaining, nextElement);
   }

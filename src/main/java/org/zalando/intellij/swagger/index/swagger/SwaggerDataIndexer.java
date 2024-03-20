@@ -64,9 +64,9 @@ class SwaggerDataIndexer extends SpecIndexer {
       final SwaggerFileType multipleDefinitionsNotInRootFile) {
     if (refValue.contains(SwaggerConstants.REFERENCE_PREFIX)) {
       final String definitionPath =
-          org.apache.commons.lang.StringUtils.substringAfterLast(refValue, SwaggerConstants.HASH);
+          org.apache.commons.lang3.StringUtils.substringAfterLast(refValue, SwaggerConstants.HASH);
       int slashCount =
-          org.apache.commons.lang.StringUtils.countMatches(definitionPath, SwaggerConstants.SLASH);
+          org.apache.commons.lang3.StringUtils.countMatches(definitionPath, SwaggerConstants.SLASH);
 
       return slashCount == 1
           ? multipleDefinitionsInRootFile.toString()

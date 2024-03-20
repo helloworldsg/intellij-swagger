@@ -115,7 +115,7 @@ public abstract class SpecIndexer implements DataIndexer<String, Set<String>, Fi
   private Optional<String> getReferencedFileIndexValue(
       final PsiElement psiElement, final String refValue, final VirtualFile specDirectory) {
     final String relativePath =
-        org.apache.commons.lang.StringUtils.substringBefore(
+        org.apache.commons.lang3.StringUtils.substringBefore(
             refValue, ApiConstants.REFERENCE_PREFIX);
 
     return Optional.ofNullable(specDirectory.findFileByRelativePath(relativePath))
