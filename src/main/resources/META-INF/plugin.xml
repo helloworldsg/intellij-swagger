@@ -10,7 +10,6 @@
     <p>A plugin based on Zalando Intellij OpenAPI Editor with some tweaks:</p>
     <ul>
       <li>Stoplight preview</li>
-      <li>Updated OAS 3.1 schema</li>
     </ul>
     ]]></description>
 
