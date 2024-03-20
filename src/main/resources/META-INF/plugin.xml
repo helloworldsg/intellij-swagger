@@ -1,15 +1,17 @@
 <idea-plugin>
-    <id>org.zalando.intellij.swagger</id>
-    <name>Zalando OpenAPI Editor</name>
-    <vendor email="sebastian.monte@zalando.de" url="https://tech.zalando.com/">Zalando SE</vendor>
+    <id>org.moniaga.intellij.openapi</id>
+    <name>OpenAPI 3.1 Editor</name>
+    <vendor email="harry@moniaga.com" url="https://github.com/helloworldsg/intellij-swagger">Harry Moniaga</vendor>
 
     <depends>com.intellij.modules.lang</depends>
     <depends>org.jetbrains.plugins.yaml</depends>
 
     <description><![CDATA[
-     <p>A plugin to help you easily edit Open API and Swagger specification files.</p><br/>
-
-     <p>Like this plugin? <b>Give it a star</b> at <a href="https://github.com/zalando/intellij-swagger">GitHub</a> and spread the word!</p>
+    <p>A plugin based on Zalando Intellij OpenAPI Editor with some tweaks:</p>
+    <ul>
+      <li>Stoplight preview</li>
+      <li>Updated OAS 3.1 schema</li>
+    </ul>
     ]]></description>
 
     <extensionPoints>
