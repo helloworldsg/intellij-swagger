@@ -12,6 +12,7 @@ plugins {
     id("idea")
     id("java")
     id("com.github.ben-manes.versions") version "0.51.0"
+    id("com.palantir.git-version") version "3.0.0"
 }
 
 intellij {
@@ -21,8 +22,9 @@ intellij {
     version.set("2022.3") // Recommended to use the lowest supported version to compile against
 }
 
+val gitVersion: groovy.lang.Closure<String> by extra
 group = "org.zalando.intellij"
-version = if (project.version != Project.DEFAULT_VERSION) project.version else "SNAPSHOT"
+version = gitVersion()
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
