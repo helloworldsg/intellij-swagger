@@ -5,7 +5,7 @@ import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.PsiElement;
 import java.util.Optional;
 import java.util.stream.Stream;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.zalando.intellij.swagger.traversal.path.PathFinder;
 
 public abstract class ApiDocumentProvider extends AbstractDocumentationProvider {

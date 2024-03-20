@@ -1,6 +1,6 @@
 <idea-plugin>
-    <id>org.moniaga.intellij.openapi</id>
-    <name>OpenAPI 3.1 Editor</name>
+    <id>org.moniaga.openapi</id>
+    <name>OpenAPI 3.x Editor</name>
     <vendor email="harry@moniaga.com" url="https://github.com/helloworldsg/intellij-swagger">Harry Moniaga</vendor>
 
     <depends>com.intellij.modules.lang</depends>

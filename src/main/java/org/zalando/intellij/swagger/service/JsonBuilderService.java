@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.function.Consumer;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.zalando.intellij.swagger.reference.SwaggerConstants;
 
 class JsonBuilderService {

@@ -2,7 +2,7 @@ package org.zalando.intellij.swagger.completion.field.model.common;
 
 import static org.zalando.intellij.swagger.file.FileConstants.CARET;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 public class ArrayField extends Field {
 

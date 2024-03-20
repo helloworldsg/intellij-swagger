@@ -4,7 +4,7 @@ import static org.zalando.intellij.swagger.file.FileConstants.CARET;
 
 import com.google.common.collect.ImmutableList;
 import java.util.List;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 public class ObjectField extends Field {
 
