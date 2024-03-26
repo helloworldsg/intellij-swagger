@@ -12,6 +12,12 @@
       <li>Stoplight preview</li>
     </ul>
     ]]></description>
+    <change-notes><![CDATA[
+    <h2>Bug Fixes</h2>
+    <ul>
+      <li>Fixed preview in windows</li>
+    </ul>
+    ]]></change-notes>
 
     <extensionPoints>
         <extensionPoint qualifiedName="org.zalando.intellij.swagger.customFieldFactory"
