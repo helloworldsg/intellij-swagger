@@ -1,6 +1,6 @@
 package org.zalando.intellij.swagger.file;
 
-import com.intellij.openapi.util.io.FileUtil;
+import com.intellij.ide.impl.ProjectUtil;
 import com.intellij.util.LocalFileUrl;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,6 @@ import java.nio.file.StandardCopyOption;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
-import org.jetbrains.annotations.NotNull;
 
 public class StoplightCreator {
 
@@ -29,11 +28,12 @@ public class StoplightCreator {
   }
 
   public Path createSwaggerUiFiles(final String specificationContent) throws Exception {
-    final File tempSwaggerUiDir = copySwaggerUiToTempDir();
-
-    setSwaggerConfigurationValues(new File(tempSwaggerUiDir, "index.html"), specificationContent);
-
-    return Paths.get(tempSwaggerUiDir.getAbsolutePath());
+    Path cachePath =
+        com.intellij.openapi.project.ProjectUtil.getProjectCachePath(
+            Objects.requireNonNull(ProjectUtil.getActiveProject()), "stoplight-cache");
+    copyFromJar(cachePath);
+    setSwaggerConfigurationValues(new File(cachePath.toFile(), "index.html"), specificationContent);
+    return cachePath;
   }
 
   public void updateSwaggerUiFile(
@@ -41,15 +41,6 @@ public class StoplightCreator {
     final File indexFile = new File(Paths.get(indexFileUrl.getPath()).toUri());
 
     setSwaggerConfigurationValues(indexFile, specificationContent);
-  }
-
-  @NotNull
-  private File copySwaggerUiToTempDir() throws IOException, URISyntaxException {
-    final File tempSwaggerUiDir = FileUtil.createTempDirectory(SWAGGER_UI_FOLDER_NAME, "", true);
-
-    copyFromJar(Paths.get(tempSwaggerUiDir.toURI()));
-
-    return tempSwaggerUiDir;
   }
 
   private void setSwaggerConfigurationValues(

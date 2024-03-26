@@ -62,11 +62,11 @@ public class SwaggerFileService {
   }
 
   private void notifyFailure(final Exception exception) {
-    log.info("Error generating Swagger UI", exception);
+    log.info("Error generating Stoplight", exception);
     Notification notification =
         new Notification(
-            "Swagger UI",
-            "Could not generate Swagger UI",
+            "Stoplight",
+            "Could not generate Stoplight",
             Objects.toString(exception),
             NotificationType.WARNING);
 
@@ -76,9 +76,7 @@ public class SwaggerFileService {
   private Optional<Path> convertSwaggerToHtmlWithoutCache(
       final VirtualFile virtualFile, final String contentAsJson) throws Exception {
     final Path path = stoplightCreator.createSwaggerUiFiles(contentAsJson);
-
     convertedSwaggerDocuments.put(virtualFile.getPath(), path);
-
     return Optional.of(path);
   }
 
