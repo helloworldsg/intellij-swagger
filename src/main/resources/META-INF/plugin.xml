@@ -15,7 +15,7 @@
     <change-notes><![CDATA[
     <h2>Bug Fixes</h2>
     <ul>
-      <li>Fixed preview in windows</li>
+      <li>Fixed intellij deprecated API</li>
     </ul>
     ]]></change-notes>
 
