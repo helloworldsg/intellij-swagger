@@ -3,11 +3,11 @@ package org.zalando.intellij.swagger.ui.provider;
 import com.intellij.ide.browsers.OpenInBrowserRequest;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.DumbAware;
-import com.intellij.openapi.vfs.*;
+import com.intellij.openapi.vfs.LocalFileSystem;
+import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.util.Url;
 import com.intellij.util.Urls;
-import java.io.File;
 import java.nio.file.Path;
 import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
@@ -35,7 +35,7 @@ public class SwaggerUiUrlProvider extends BuiltInWebBrowserUrlProvider implement
 
     VirtualFile vfile =
         LocalFileSystem.getInstance()
-            .findFileByPath(swaggerHTMLFolder.get() + File.separator + "index.html");
+            .findFileByNioFile(swaggerHTMLFolder.get().resolve("index.html"));
     return Urls.newFromVirtualFile(vfile);
   }
 }

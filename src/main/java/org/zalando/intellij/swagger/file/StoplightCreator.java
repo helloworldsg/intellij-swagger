@@ -1,18 +1,13 @@
 package org.zalando.intellij.swagger.file;
 
 import com.intellij.ide.impl.ProjectUtil;
-import com.intellij.util.LocalFileUrl;
-import java.io.File;
+import com.intellij.openapi.vfs.LocalFileSystem;
+import com.intellij.openapi.vfs.VirtualFile;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.*;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -32,19 +27,20 @@ public class StoplightCreator {
         com.intellij.openapi.project.ProjectUtil.getProjectCachePath(
             Objects.requireNonNull(ProjectUtil.getActiveProject()), "stoplight-cache");
     copyFromJar(cachePath);
-    setSwaggerConfigurationValues(new File(cachePath.toFile(), "index.html"), specificationContent);
+
+    setSwaggerConfigurationValues(
+        LocalFileSystem.getInstance().findFileByNioFile(cachePath.resolve("index.html")),
+        specificationContent);
     return cachePath;
   }
 
   public void updateSwaggerUiFile(
-      final LocalFileUrl indexFileUrl, final String specificationContent) {
-    final File indexFile = new File(Paths.get(indexFileUrl.getPath()).toUri());
-
-    setSwaggerConfigurationValues(indexFile, specificationContent);
+      final VirtualFile indexFileUrl, final String specificationContent) {
+    setSwaggerConfigurationValues(indexFileUrl, specificationContent);
   }
 
   private void setSwaggerConfigurationValues(
-      final File indexFile, final String specificationContent) {
+      final VirtualFile indexFile, final String specificationContent) {
     fileContentManipulator.setJsonToIndexFile(specificationContent, indexFile);
   }
 

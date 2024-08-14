@@ -1,9 +1,9 @@
 package org.zalando.intellij.swagger.file;
 
-import java.io.File;
+import com.intellij.openapi.application.WriteAction;
+import com.intellij.openapi.vfs.VirtualFile;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import org.jetbrains.annotations.NotNull;
 
 public class FileContentManipulator {
@@ -11,13 +11,17 @@ public class FileContentManipulator {
   private static final String SPEC_START_TOKEN = "/*intellij-swagger-spec-start*/";
   private static final String SPEC_END_TOKEN = "/*intellij-swagger-spec-end*/";
 
-  void setJsonToIndexFile(final String specJson, final File indexFile) {
+  void setJsonToIndexFile(final String specJson, final VirtualFile indexFile) {
     try {
-      final String originalContent = Files.readString(indexFile.toPath(), StandardCharsets.UTF_8);
+      final String originalContent =
+          new String(indexFile.contentsToByteArray(), StandardCharsets.UTF_8);
       final String newContent =
           insertContentBetween(specJson, originalContent, SPEC_START_TOKEN, SPEC_END_TOKEN);
 
-      Files.writeString(indexFile.toPath(), newContent, StandardCharsets.UTF_8);
+      WriteAction.run(
+          () -> {
+            indexFile.setBinaryContent(newContent.getBytes(StandardCharsets.UTF_8));
+          });
     } catch (final IOException e) {
       throw new RuntimeException(e);
     }

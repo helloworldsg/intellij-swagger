@@ -9,10 +9,9 @@ import com.intellij.notification.Notifications;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.fileEditor.impl.LoadTextUtil;
+import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.util.LocalFileUrl;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -84,8 +83,8 @@ public class SwaggerFileService {
     Optional.ofNullable(convertedSwaggerDocuments.get(file.getPath()))
         .ifPresent(
             dir -> {
-              LocalFileUrl indexPath =
-                  new LocalFileUrl(Paths.get(dir.toString(), "index.html").toString());
+              VirtualFile indexPath =
+                  LocalFileSystem.getInstance().findFileByNioFile(dir.resolve("index.html"));
               stoplightCreator.updateSwaggerUiFile(indexPath, contentAsJson);
             });
   }

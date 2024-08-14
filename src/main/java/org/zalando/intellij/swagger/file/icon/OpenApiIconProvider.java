@@ -1,7 +1,7 @@
 package org.zalando.intellij.swagger.file.icon;
 
 import com.intellij.openapi.application.ApplicationManager;
-import javax.swing.Icon;
+import javax.swing.*;
 import org.zalando.intellij.swagger.index.IndexService;
 import org.zalando.intellij.swagger.index.openapi.OpenApiIndexService;
 

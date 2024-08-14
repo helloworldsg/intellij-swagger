@@ -1,6 +1,6 @@
 package org.zalando.intellij.swagger.traversal.path;
 
-import static org.zalando.intellij.swagger.traversal.path.PathExpressionUtil.*;
+import static org.zalando.intellij.swagger.traversal.path.PathExpressionUtil.unescape;
 
 import com.intellij.json.psi.JsonArray;
 import com.intellij.json.psi.JsonObject;
